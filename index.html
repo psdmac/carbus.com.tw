@@ -785,7 +785,7 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
     <div id="map_canvas" style="width:100%; height:100%; background: #333;"></div>
     <div id="title-wrapper">
       <h1>TAIPEI</h1>
-      <p>台北市行政區道路救援車輛運輸 500 元</p>
+      <p>台北市行政區道路救援車輛運輸 1000 元</p>
     </div>
     <form class="distance-wrapper">
     <a href="#" class="toggle-menu">運費估算<i class="icon-plus pull-right"></i></a>
@@ -931,15 +931,8 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
                                 <li>擁有最快速的道路救援呼叫系統，務求30分鐘到達現場服務，提供低底盤超跑、正常車輛、重機、事故車、火燒車、電影道具車運送，解決車輛運送的問題。</li>
                                 </ul>
                               </li>
-                              <li><span style="font-size: 22px;">試營運都會區基本收費：</span>
+                              <li><span style="font-size: 22px;">基本收費：</span>
                                 <ul>
-                                  <li>都會區：中山區、大同區、信義區、大安區、中正區、松山區</li>
-                                  <li>一般道路：500 元 / 6 公里，超過  50 元 / 1 公里</li>
-                                </ul>
-                              </li>
-                              <li><span style="font-size: 22px;">未開通都會區基本收費：</span>
-                                <ul>
-                                  <li>未開通都會區：內湖區、南港區、士林區、三重區、板橋區、永和區、中和區、蘆洲區、萬華區、文山區、汐止區、北投區、新莊區、五股區、土城區、基隆市全區</li>
                                   <li>一般道路：1000 元 / 10 公里，超過  50 元 / 1 公里</li>
                                 </ul>
                               </li>
@@ -975,7 +968,7 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
                               <tr>
                                 <th style="width: 20%" class="tg-031e">基本費</th>
                                 <th class="tg-031e">一般道路</th>
-                                <th class="tg-031e">500 元 / 6 km</th>
+                                <th class="tg-031e">1000 元 / 10 km</th>
                               </tr>
                               <tr>
                                 <td class="tg-031e" rowspan="6">增加費</td>
@@ -1007,6 +1000,7 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
                         </div>
                       </div>
                     </div>
+                    <!--
                     <div class="shortcode_tab_item_title expand_no">道路救援</div>
                     <div class="shortcode_tab_item_body tab-content clearfix">
                       <div class="ip">
@@ -1055,11 +1049,6 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
                                     <td class="tg-031e"></td>
                                     <td class="tg-031e">500 元</td>
                                   </tr>
-<!--                                   <tr>
-                                    <td class="tg-031e">打氣</td>
-                                    <td class="tg-031e"></td>
-                                    <td class="tg-031e">500 元</td>
-                                  </tr> -->
                                   <tr>
                                     <td class="tg-031e" rowspan="3">換備胎</td>
                                     <td class="tg-031e">15 吋內</td>
@@ -1098,6 +1087,7 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
                         </div>
                       </div>
                     </div>
+                    -->
                     <div class="shortcode_tab_item_title expand_no">長途運送</div>
                     <div class="shortcode_tab_item_body tab-content clearfix">
                       <div class="ip">
@@ -1151,7 +1141,7 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
                                 </tr>
                                 <tr>
                                 <td class="tg-031e">屏東</td>
-                                <td class="tg-031e">16000</td>
+                                <td class="tg-031e">110000</td>
                                 </tr>
                                 <tr>
                                 <td class="tg-031e">大鵬灣</td>
@@ -2663,13 +2653,13 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
     $('#distance-submit').hide();
     resultWrapper.show();
     $('#distance-text').html(result.routes[0].legs[0].distance.text);
-    if(result.routes[0].legs[0].distance.value <= 6000) {
-      $('#message-text').html('未超過 6 公里，最低 500 元');
-      $('#price-text').html(500);
+    if(result.routes[0].legs[0].distance.value <= 10000) {
+      $('#message-text').html('未超過 10 公里，最低 1000 元');
+      $('#price-text').html(1000);
     } else {
-      $('#message-text').html('超過 6 公里，超過 50 元 / 1 公里 ');
-      var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 6000)/1000);
-      var price = 500 + 50 * moreDistance;
+      $('#message-text').html('超過 10 公里，超過 50 元 / 1 公里 ');
+      var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 10000)/1000);
+      var price = 1000 + 50 * moreDistance;
       $('#price-text').html("＄ " + price + " (未稅)");
     }
 
@@ -2685,8 +2675,8 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
         // 起終點有一方在服務範圍
         if (result.routes[0].legs[0].distance.value >= 100000) {
           $('#message-text').html('超過 100 公里，屬於長途運輸，短程運送打九折');
-          var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 6000)/1000);
-          var price = (500 + 50 * moreDistance) * 0.9;
+          var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 10000)/1000);
+          var price = (1000 + 50 * moreDistance) * 0.9;
           price = Math.ceil(price/50) * 50;
           $('#price-text').html("＄ " + price + " (未稅)");
         } else if (
@@ -2696,13 +2686,13 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
           // 起終點有一方在 1.5 倍
 
           $('#distance-text').html(result.routes[0].legs[0].distance.text);
-          if(result.routes[0].legs[0].distance.value <= 6000) {
-            $('#message-text').html('未超過 6 公里，最低 500 元，偏遠加乘 1.5 倍');
-            $('#price-text').html(500 * 1.5);
+          if(result.routes[0].legs[0].distance.value <= 10000) {
+            $('#message-text').html('未超過 10 公里，最低 1000 元，偏遠加乘 1.5 倍');
+            $('#price-text').html(1000 * 1.5);
           } else {
-            $('#message-text').html('超過 6 公里，超過 50 元 / 1 公里，偏遠加乘 1.5 倍');
-            var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 6000)/1000);
-            var price = (500 + 50 * moreDistance) * 1.5;
+            $('#message-text').html('超過 10 公里，超過 50 元 / 1 公里，偏遠加乘 1.5 倍');
+            var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 10000)/1000);
+            var price = (1000 + 50 * moreDistance) * 1.5;
             price = Math.ceil(price/50) * 50;
             $('#price-text').html("＄ " + price + " (未稅)");
           }
@@ -2714,13 +2704,13 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
           // 起終點有一方在 1.3 倍
 
           $('#distance-text').html(result.routes[0].legs[0].distance.text);
-          if(result.routes[0].legs[0].distance.value <= 6000) {
-            $('#message-text').html('未超過 6 公里，最低 500 元，偏遠加乘 1.3 倍');
-            $('#price-text').html(500 * 1.3);
+          if(result.routes[0].legs[0].distance.value <= 10000) {
+            $('#message-text').html('未超過 10 公里，最低 1000 元，偏遠加乘 1.3 倍');
+            $('#price-text').html(1000 * 1.3);
           } else {
-          $('#message-text').html('超過 6 公里，超過 50 元 / 1 公里，偏遠加乘 1.3 倍');
-            var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 6000)/1000);
-            var price = (500 + 50 * moreDistance) * 1.3;
+          $('#message-text').html('超過 10 公里，超過 50 元 / 1 公里，偏遠加乘 1.3 倍');
+            var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 10000)/1000);
+            var price = (1000 + 50 * moreDistance) * 1.3;
             price = Math.ceil(price/50) * 50;
             $('#price-text').html("＄ " + price + " (未稅)");
           }
@@ -2732,13 +2722,13 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
           // 起終點有一方在 1.1 倍
 
           $('#distance-text').html(result.routes[0].legs[0].distance.text);
-          if(result.routes[0].legs[0].distance.value <= 6000) {
-            $('#message-text').html('未超過 6 公里，最低 500 元，偏遠加乘 1.1 倍');
-            $('#price-text').html(500 * 1.1);
+          if(result.routes[0].legs[0].distance.value <= 10000) {
+            $('#message-text').html('未超過 10 公里，最低 1000 元，偏遠加乘 1.1 倍');
+            $('#price-text').html(1000 * 1.1);
           } else {
-          $('#message-text').html('超過 6 公里，超過 50 元 / 1 公里，偏遠加乘 1.1 倍');
-            var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 6000)/1000);
-            var price = (500 + 50 * moreDistance) * 1.1;
+          $('#message-text').html('超過 10 公里，超過 50 元 / 1 公里，偏遠加乘 1.1 倍');
+            var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 10000)/1000);
+            var price = (1000 + 50 * moreDistance) * 1.1;
             price = Math.ceil(price/50) * 50;
             $('#price-text').html("＄ " + price + " (未稅)");
           }
@@ -2754,24 +2744,24 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
     // } else if (!town.start || !town.end) {
     //   // 起終點有一方在服務範圍
     //   $('#distance-text').html(result.routes[0].legs[0].distance.text);
-    //   if (result.routes[0].legs[0].distance.value <= 6000) {
+    //   if (result.routes[0].legs[0].distance.value <= 10000) {
     //     if (
     //       ( $.inArray(town.start, townArray) >= 0 && county.start != '臺北市' ) ||
     //       ( $.inArray(town.end, townArray) >= 0 && county.end != '臺北市' )
     //     ) {
-    //       $('#message-text').html('未超過 6 公里，最低 500 元，偏遠加乘 1.5 倍');
-    //       $('#price-text').html(500 * 1.5);
+    //       $('#message-text').html('未超過 10 公里，最低 1000 元，偏遠加乘 1.5 倍');
+    //       $('#price-text').html(1000 * 1.5);
     //     }
     //   } else if (result.routes[0].legs[0].distance.value >= 100000) {
     //     $('#message-text').html('超過 100 公里，屬於長途運輸，短程運送打九折');
-    //     var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 6000)/1000);
-    //     var price = (500 + 50 * moreDistance) * 0.9;
+    //     var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 10000)/1000);
+    //     var price = (1000 + 50 * moreDistance) * 0.9;
     //     price = Math.ceil(price/50) * 50;
     //     $('#price-text').html("＄ " + price + " (未稅)");
     //   } else {
     //     $('#message-text').html('屬於偏遠地區，偏遠加乘 1.5 倍');
-    //     var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 6000)/1000);
-    //     var price = (500 + 50 * moreDistance) * 1.5;
+    //     var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 10000)/1000);
+    //     var price = (1000 + 50 * moreDistance) * 1.5;
     //     price = Math.ceil(price/50) * 50;
     //     $('#price-text').html("＄ " + price + " (未稅)");
     //   }
@@ -2792,13 +2782,13 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
     //     // 起終點有一方在 1.5 倍
 
     //     $('#distance-text').html(result.routes[0].legs[0].distance.text);
-    //     if(result.routes[0].legs[0].distance.value <= 6000) {
-    //       $('#message-text').html('未超過 6 公里，最低 500 元，偏遠加乘 1.5 倍');
-    //       $('#price-text').html(500 * 1.5);
+    //     if(result.routes[0].legs[0].distance.value <= 10000) {
+    //       $('#message-text').html('未超過 10 公里，最低 1000 元，偏遠加乘 1.5 倍');
+    //       $('#price-text').html(1000 * 1.5);
     //     } else {
-    //       $('#message-text').html('超過 6 公里，超過 50 元 / 1 公里，偏遠加乘 1.5 倍');
-    //       var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 6000)/1000);
-    //       var price = (500 + 50 * moreDistance) * 1.5;
+    //       $('#message-text').html('超過 10 公里，超過 50 元 / 1 公里，偏遠加乘 1.5 倍');
+    //       var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 10000)/1000);
+    //       var price = (1000 + 50 * moreDistance) * 1.5;
     //       price = Math.ceil(price/50) * 50;
     //       $('#price-text').html("＄ " + price + " (未稅)");
     //     }
@@ -2810,13 +2800,13 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
     //     // 起終點有一方在 1.3 倍
 
     //     $('#distance-text').html(result.routes[0].legs[0].distance.text);
-    //     if(result.routes[0].legs[0].distance.value <= 6000) {
-    //       $('#message-text').html('未超過 6 公里，最低 500 元，偏遠加乘 1.3 倍');
-    //       $('#price-text').html(500 * 1.3);
+    //     if(result.routes[0].legs[0].distance.value <= 10000) {
+    //       $('#message-text').html('未超過 10 公里，最低 1000 元，偏遠加乘 1.3 倍');
+    //       $('#price-text').html(1000 * 1.3);
     //     } else {
-    //     $('#message-text').html('超過 6 公里，超過 50 元 / 1 公里，偏遠加乘 1.3 倍');
-    //       var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 6000)/1000);
-    //       var price = (500 + 50 * moreDistance) * 1.3;
+    //     $('#message-text').html('超過 10 公里，超過 50 元 / 1 公里，偏遠加乘 1.3 倍');
+    //       var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 10000)/1000);
+    //       var price = (1000 + 50 * moreDistance) * 1.3;
     //       price = Math.ceil(price/50) * 50;
     //       $('#price-text').html("＄ " + price + " (未稅)");
     //     }
@@ -2828,13 +2818,13 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
     //     // 起終點有一方在 1.1 倍
 
     //     $('#distance-text').html(result.routes[0].legs[0].distance.text);
-    //     if(result.routes[0].legs[0].distance.value <= 6000) {
-    //       $('#message-text').html('未超過 6 公里，最低 500 元，偏遠加乘 1.1 倍');
-    //       $('#price-text').html(500 * 1.1);
+    //     if(result.routes[0].legs[0].distance.value <= 10000) {
+    //       $('#message-text').html('未超過 10 公里，最低 1000 元，偏遠加乘 1.1 倍');
+    //       $('#price-text').html(1000 * 1.1);
     //     } else {
-    //     $('#message-text').html('超過 6 公里，超過 50 元 / 1 公里，偏遠加乘 1.1 倍');
-    //       var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 6000)/1000);
-    //       var price = (500 + 50 * moreDistance) * 1.1;
+    //     $('#message-text').html('超過 10 公里，超過 50 元 / 1 公里，偏遠加乘 1.1 倍');
+    //       var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 10000)/1000);
+    //       var price = (1000 + 50 * moreDistance) * 1.1;
     //       price = Math.ceil(price/50) * 50;
     //       $('#price-text').html("＄ " + price + " (未稅)");
     //     }
@@ -2847,12 +2837,12 @@ input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hove
     //     ) {
     //     // 起終點皆在核心地區
     //     $('#distance-text').html(result.routes[0].legs[0].distance.text);
-    //     if(result.routes[0].legs[0].distance.value <= 6000) {
-    //       $('#message-text').html('未超過 6 公里，最低 500 元');
-    //       $('#price-text').html(500);
+    //     if(result.routes[0].legs[0].distance.value <= 10000) {
+    //       $('#message-text').html('未超過 10 公里，最低 1000 元');
+    //       $('#price-text').html(1000);
     //     } else {
-    //     $('#message-text').html('超過 6 公里，超過 50 元 / 1 公里 ');
-    //       var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 6000)/1000);
+    //     $('#message-text').html('超過 10 公里，超過 50 元 / 1 公里 ');
+    //       var moreDistance = Math.ceil((result.routes[0].legs[0].distance.value - 10000)/1000);
     //       var price = 500 + 50 * moreDistance;
     //       $('#price-text').html("＄ " + price + " (未稅)");
     //     }
